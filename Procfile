@@ -1,1 +1,1 @@
-web: gunicorn project.wsgi
+web: gunicorn Gestao_de_Clientes.wsgi
