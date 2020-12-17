@@ -27,7 +27,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['gestao-clientes-5432.herokuapp.com']
+ALLOWED_HOSTS = ['gestao-clientes-5432.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'clientes',
-    'homepage'
+    'homepage',
+    'bootstrapform'
 ]
 
 MIDDLEWARE = [
@@ -77,7 +78,6 @@ WSGI_APPLICATION = 'Gestao_de_Clientes.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
 default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
 
 DATABASES = {
@@ -131,3 +131,7 @@ MEDIA_ROOT = 'media'
 LOGIN_URL = '/login/'
 
 LOGIN_REDIRECT_URL = 'listarCliente'
+
+STATICFILES_DIRS = [
+    'statics',
+]
