@@ -6,7 +6,16 @@ from .forms import ClienteForm
 # Create your views here.
 @login_required
 def listaCliente(request):
-    clientes = Cliente.objects.all()
+    nome = request.GET.get('nome', None)
+    sobrenome = request.GET.get('sobrenome', None)
+
+    if nome and sobrenome:
+        clientes = Cliente.objects.filter(first_name__icontains=nome, last_name__icontains=sobrenome)
+    elif nome or sobrenome:
+        clientes = Cliente.objects.filter(first_name__icontains=nome) | Cliente.objects.filter(last_name__icontains=sobrenome)
+    else:
+        clientes = Cliente.objects.all()
+
     return render(request, 'lista-cliente.html', {'clientes': clientes})
 
 @login_required
